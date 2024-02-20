@@ -5,7 +5,7 @@ resource "azurerm_firewall_nat_rule_collection" "azure_firewall_nat_rule_collect
   azure_firewall_name = each.value.azure_firewall_name
   resource_group_name = each.value.resource_group_name
   priority            = each.value.priority
-  action              = each.value.action == "Allow" ? "Allow" : "Deny"
+  action              = each.value.action // == "Allow" ? "Allow" : "Deny"
 
   dynamic "rule" {
     for_each = each.value.rule_list
